@@ -1,0 +1,129 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
+
+int main(){
+
+    srand(time(0));
+
+    std::cout<<"before playing game you need to understand something while you play you need with 0 not 1\n";
+
+    do{
+    int number1,m,ships2=-1;
+    int number2[5][5]{
+
+        {3,2,4,1,5},
+        {9,2,7,1,5},
+        {4,3,6,5,1},
+        {8,5,0,3,5},
+        {1,4,5,2,6}
+    };
+
+    for(int i=0; i<5;i++){
+
+        m=0;
+        for(m=0;m<5;m++){
+
+            number1=rand()%2;
+            number2[i][m]=number1;
+            if(number2[i][m]){
+
+                ships2++;
+            }
+        }
+        
+    }
+
+    int shoot,mycount=0,row,column,bottotalshot,mytotalshot;
+    int number3,number4;
+    
+    //you try to shoot to most ships if you and bot tied play rock,paper and seccisors!
+
+    while(ships2>0){
+
+        std::cout<<"enter your row: ";
+        std::cin>>row;
+        std::cout<<"enter your column: ";
+        std::cin>>column;
+        if(row>4 || column>4){
+
+            std::cout<<"please enter a less then 5!\n"; 
+            continue;
+        }
+        if(number2[row][column]){
+
+            number2[row][column]=0;
+           std::cout<<"you shoot the ships!\n";
+            ships2--;
+            std::cout<<"total ships count:"<<ships2<<"\n";
+            mycount++;
+            mytotalshot++;
+        }else{
+            std::cout<<"you missed the ships!\n";
+            std::cout<<"try again!\n";
+            mycount++;
+        }
+
+        std::cout<<"my turn(playing)";
+        number3=rand()%5;
+        number4=rand()%5;
+        if(number2[number3][number4]){
+
+            number2[number3][number4]=0;
+           std::cout<<"I shoot the ships!\n";
+            ships2--;
+            std::cout<<"total ships count:"<<ships2<<"\n";
+            mycount++;
+            bottotalshot++;
+        }else{
+            std::cout<<"I missed the ships!\n";
+            std::cout<<"try again!\n";
+            mycount++;
+        }
+    }
+
+    std::cout<<"game end your total ships shoot:"<<mytotalshot<<"\n";
+    std::cout<<"bot total ships shoot"<<bottotalshot<<"\n";
+
+        int dec2;
+        std::cout<<"you got tied?(if youre enter 1 if you don't 0)";
+        std::cin>>dec2;
+        
+        while(dec2==1){
+        std::string move;
+        std::cout<<"make your move:";
+        std::cin>>move;
+
+        int e;
+        e=rand()%3+1;
+        switch (e)
+        {
+        case 1: std::cout<<"bot make scissors!";
+        break;
+
+        case 2: std::cout<<"bot make paper!";
+        break;
+        
+        case 3: std::cout<<"bot make rock!";
+
+        break;
+        }
+
+        std::cout<<"you got tied up?(1 for yes 2 for no)?";
+        std::cin>>dec2;
+
+    }
+        
+    
+    int dec=1;
+    std::cout<<"you won the game here this is your total shoot"<<mycount<<"\n";
+    std::cout<<"you want to try again?(1 for yes 0 for no)\n";
+    std::cin>>dec;
+    }while(std::dec);
+
+
+return 0;
+   
+}
